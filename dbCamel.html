@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<body>
+    `seq_seq` INT 11,
+    `idx_idx` VARCHAR(50),
+    `test` VARCHAR(50),
+    `tmst` TIMESTAMP NULL
+    <br><br>
+<textarea name="" id="dbColumn" cols="100" rows="10"></textarea>
+<div id="dbReplace"></div>
+<!--
+    CREATE TABLE `table_test` (
+   `seq` INT 11,
+   `idx` VARCHAR(50) NULL DEFAULT NULL
+)
+COLLATE='utf8mb4_unicode_ci'
+;CREATE TABLE `table_test` (
+   `seq` INT NULL,
+   `idx` VARCHAR(50) NULL DEFAULT NULL
+)
+COLLATE='utf8mb4_unicode_ci'
+;-->
+<script>
+$("#dbColumn").change(function() {
+    var dbSplit = $("#dbColumn").val().split(",");
+    var list = [];
+    var view = '';
+    // var type = '';
+    console.log(list)
+    for(var i = 0; i < dbSplit.length; i++) {
+
+    var type =  dbSplit[i]
+                .replace('INT 11', ',int')  //INT 11 -> int로 치환
+                .replace('INT', ',int')  //INT형 int로 치환
+                .replace('DATETIME',',TimeStamp')  //데이트 형식 타임스탬프 TimeStampSTAMP
+                .replace('DATE',',TimeStamp')
+                .replace('TIMESTAMP',',TimeStamp')
+                .replace('TIME',',TimeStamp')
+                .replace('NULL','') //널값 초기화
+                .replace('VARCHAR', ',String') //문자열 스트링
+                .replace(/\((.*?)\)/,'')  //괄호 내용 삭제  
+                .replaceAll('`','') // `표시제거
+                .replace(/_[a-z]/g, function (str) {  //스네이크 카넬 표기법으로 변경
+                    return str[1].toUpperCase();
+                });
+    // type  += '<br>';
+    console.log(type);
+    var typeSp = type.split(',');
+        console.log(typeSp[1])
+    var type0 = $.trim(typeSp[0])+';';
+        console.log(type0);
+    view += typeSp[1] + ' ' + type0 + '<br>';
+       
+    }
+    console.log('view == ' + view)
+    $("#dbReplace").html(view)
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <span id="selectQ"></span>
+        <button id="selectBtn">저장</button>
+        
+    </div>
+    <div>
+        <span id="insertQ"></span>
+        <button id="insertBtn">저장</button>
+    </div>
+    <div>
+        <span id="updateQ"></span>
+        <button id="updateBtn">저장</button>
+    </div>
+    <div>
+        <span id="deleteQ"></span>
+        <button id="deleteBtn">저장</button>
+    </div>
+<hr>
+<input type="text" id="queryVal">
+<script>
+    var selectQ = '<select id="" resultType=""  parameterType="">'
+                + 'SELECT * FROM ${tableName}"'
+                + '</select>';
+    var insertQ = '<insert id="">'
+                + ' INSERT INTO ${tableName}() VALUES()"'
+                + '</inert>';
+    var updateQ = '<update id="">'
+                + ' UPDATE ${tableName} SET ${column} = #{columnVal}"'
+                + '</update>';
+    var deleteQ = '<delete id="">'
+                + ' DELETE FROM ${tableName} WHERE ${column} = #{columnVal}"'
+                + '</delete>';
+
+    $(document).ready(function() {
+        $("#selectQ").text(selectQ);
+        $("#insertQ").text(insertQ);
+        $("#updateQ").text(updateQ);
+        $("#deleteQ").text(deleteQ);
+
+    })
+
+
+
+    $("#selectBtn").click(function() {
+        $("#queryVal").val(selectQ);
+        $("#queryVal").select();
+        document.execCommand('copy');
+    });
+
+    $("#insertBtn").click(function() {
+        $("#queryVal").val(insertQ);
+        $("#queryVal").select();
+        document.execCommand('copy');
+    });
+
+    $("#updateBtn").click(function() {
+        $("#queryVal").val(updateQ);
+        $("#queryVal").select();
+        document.execCommand('copy');
+    });
+
+    $("#deleteBtn").click(function() {
+        $("#queryVal").val(deleteQ);
+        $("#queryVal").select();
+        document.execCommand('copy');
+    });
+
+</script>
+</body>
+</html>
