@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" name="a">    
+<button id="b">aaa</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script>
+    $("#b").click(function() {
+    
+    if($('[name="a"]').emptyCheck('내용을')) return;
+})
+
+    $.fn.emptyCheck = function(target) {
+        if($(this).val() == '') {
+            alert(target + " 입력해주세요.");
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
