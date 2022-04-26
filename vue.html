@@ -10,12 +10,16 @@
     <!-- 타임스템프(날짜포맷) -->
     <script>
         function dateFormatter(date) {
+		var result = "";
+		if(date != null && date != "") { //널 값인 경우 유닉스 시간으로 나오기 때문에 조건 처리
+			var now = new Date(date);
+			var year = now.getFullYear() < 10 ? '0' + now.getFullYear() : now.getFullYear();
+			var month = now.getMonth() + 1 < 10 ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
+			var day = now.getDate() < 10 ? '0' + now.getDate() : now.getDate();
+			var result = year + '-' + month + '-' + day;
+		} 
 		
-		var now = new Date(date);
-		var year = now.getFullYear() < 10 ? '0' + now.getFullYear() : now.getFullYear();
-		var month = now.getMonth() + 1 < 10 ? '0' + (now.getMonth() + 1) : (now.getMonth() + 1);
-		var day = now.getDate() < 10 ? '0' + now.getDate() : now.getDate();
-		return year + '-' + month + '-' + day;
+		return result;
 	}
     </script>
 </body>
