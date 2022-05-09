@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- ============  JQUERY    ================ -->	
+   
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+
+	<!-- ============ BOOTSTRAP ================ -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
+	<!-- ============ SWEET ALERT ================ -->	
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css"/>
+
+    <link rel="stylesheet" href="css/main.css">
+  
+	
+
+<title>Exam100</title>	
+</head>
+
+
+
+
+<body>
+
+    <style>
+		/*====== 컨트롤패널 ======= */
+		#cntl_panel_outer{			
+			width:100%; 
+			margin:0 auto;
+			height:72px; 
+			position: sticky;
+			top: 0;
+
+			-webkit-box-shadow: 0 1px 2px 0 #777;
+			 box-shadow: 0 1px 2px 0 #777;
+			 background-color:white;
+		}
+		#cntl_panel_inner{			
+			
+			width: 25cm; 
+			height:70px;
+			margin:0 auto;
+			height:70px;
+			text-align:center;
+			padding-top:20px;		
+		}
+		.cntl_inner2{
+            overflow:hidden;
+			display:inline-block;
+			text-align:center;
+			margin-right:20px;
+			
+		}
+</style>
+
+<!-- ============  control page div ================== -->
+
+<div id="cntl_panel_outer" class="noPrint">
+	<div id="cntl_panel_inner" >        
+        <div class="cntl_inner2" >
+			<button type="button" class="btn btn-info" id="add_one"><span style="font-size:12px;">하나씩 증가</span></button>
+		</div>
+
+        <div class="cntl_inner2" >
+			<button type="button" class="btn btn-info" id="print_all"><span style="font-size:12px;">프린트</span></button>
+		</div>	
+	</div>
+</div>
+
+<!-- =================================================  -->
+
+<script>
+var _total = 0;
+var _i = 0;
+//////////////// =====  정답... 풀이 버튼 ====== ////////////////////////////////
+$(document).on('click', '#add_one', function() {		// 정답을 클릭하면
+
+	var row = $('.newspaper').eq(0); 
+    var contents = "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+        contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
+           
+    
+    $('.newspaper').eq(_i).append('<div class="contentA">'+contents+'</div>');
+    var height = parseInt($(".contentA").eq(0).innerHeight());
+    
+    _total = _total == 0 ?  height : parseInt(_total+height);
+    console.log(_total);
+    var last = $("contentA").length - 1;   
+    console.log(last);
+    if(_total > 2002) {
+        _i += 1;
+        _total = 0;
+    } 
+});
+
+
+//////////  print //////////////////////////////////
+$("#print_all").click(function(){	// 정답만 prin
+	window.print();
+});
+
+
+</script>
+
+<style>
+    .subpage {
+        width: 1000;
+    }
+    .newspaper {
+    width: 400;
+display: list-item;
+}
+</style>
+<div class="book" id="book1">
+
+	<div class="page pbs" id='page_0'>			
+        <div class="subpage" id='subpage_0'>
+			<div class="top_div">
+					<div class="academy_name"></div>
+					<div class="paper_name"></div>									
+			</div>		
+			<div class="newspaper" id='newcon_0'></div>	
+			
+			<div class="bottom_div">
+					<div class="academy_name"></div>
+					<div class="page_number">1</div>
+			</div>		
+			  
+        </div>		
+    </div>	
+
+</div>
+	
+<style>
+    .contentA{ 
+        border: 1px blue solid;
+        margin-bottom: 15px;
+        text-align:justify;
+    }
+
+</style>
+
+</body>
+
+
+<script>
+$(document).ready(function() { 	
+	for(var i=0; i<10; i++){
+		add_page();
+	}
+	$('#page_0').remove();
+});
+
+
+function add_page(){		
+		
+		var last_page_name	= $(".page:last").attr('id');	// page_1
+		var last_page_arr	= last_page_name.split('_');	
+		var last_page_num	= last_page_arr[1];				// 1
+		var new_id_n		= Number(last_page_num)+1;		// 2
+		var next_id_name	= 'page_'+new_id_n;				// page_2
+
+		var html = '<div class="page pbs" id='+"page_"+new_id_n+'>'+'</div>';	// page 삽입	
+			($('#'+last_page_name)).after(html);
+		var html = '<div class="subpage" id='+"subpage_"+new_id_n+'>'+'</div>';		// subpage 삽입
+			($('#'+next_id_name)).append(html);
+
+		var html = '<div class="top_div"><div class="academy_name">테스트</div><div class="paper_name">Lesson1</div>	</div>';		
+			$('#subpage_'+new_id_n).append(html);	
+		var html = '<div class="newspaper" id='+"newcon_"+new_id_n+'>'+'</div>';	// newspaper삽입	
+			$('#subpage_'+new_id_n).append(html);
+		var html = '<div class="bottom_div"><div class="academy_name">테스트</div><div class="page_number">'+new_id_n+'</div></div>';		
+			$('#subpage_'+new_id_n).append(html);
+	}
+
+</script>
+
+</html>
