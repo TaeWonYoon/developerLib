@@ -79,12 +79,14 @@
 <!-- =================================================  -->
 
 <script>
-var _total = 0;
-var _i = 0;
-//////////////// =====  정답... 풀이 버튼 ====== ////////////////////////////////
-$(document).on('click', '#add_one', function() {		// 정답을 클릭하면
 
-	var row = $('.newspaper').eq(0); 
+var _i = 0;
+//var idx = 0;
+var _total = 0;
+//////////////// =====  정답... 풀이 버튼 ====== ////////////////////////////////
+$(document).on('click', '#add_one', function(event) {		// 정답을 클릭하면
+    
+	// var row = $('.newspaper').eq(0); 
     var contents = "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
         contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";
         contents = contents + "Wind turbine makers racked up hefty losses last quarter, swelled by rocketing costs and cut-throat competition despite being more in demand than ever.";    
@@ -97,16 +99,30 @@ $(document).on('click', '#add_one', function() {		// 정답을 클릭하면
            
     
     $('.newspaper').eq(_i).append('<div class="contentA">'+contents+'</div>');
-    var height = parseInt($(".contentA").eq(0).innerHeight());
-    
-    _total = _total == 0 ?  height : parseInt(_total+height);
-    console.log(_total);
-    var last = $("contentA").length - 1;   
-    console.log(last);
-    if(_total > 2002) {
-        _i += 1;
-        _total = 0;
-    } 
+
+    var contentAIdx = $(".newspaper:eq("+ _i +") .contentA");
+    var total = 0;
+
+    contentAIdx.each(function(idx){//각각의 컨텐트A 반복문
+        total += $(".newspaper:eq("+ _i +") .contentA").eq(idx).innerHeight(); //페이지 영역을 벗어나는지 체크
+        if(total > 1930) { //프린트 높이 영역이 두개 합쳤을때  1930
+            var fpageheight = 0; //텍스트 하나당 영역
+            var div = 1930;  
+            var divVal = 0; //div - fpageheight 담을 값
+
+            fpageheight = $(".newspaper:eq("+ _i +") .contentA").eq(idx).innerHeight(); //총 높이 값
+
+            contentAIdx.eq(idx).html("");  //마지막 짤리는 내용 지움
+            contentAIdx.eq(idx).removeClass("contentA"); //클래스도 같이 지워준다
+
+            divVal = parseInt(div) - parseInt(fpageheight); //양쪽 높이 - 한개
+
+            _i += 1; //다음 컨텐츠 이동을 위해 idx = 1추가
+            $('.newspaper').eq(_i).append('<div class="contentA">'+contents+'</div>'); //다음컨테츠로 이동
+            
+        }
+    }) 
+
 });
 
 
@@ -124,7 +140,7 @@ $("#print_all").click(function(){	// 정답만 prin
     }
     .newspaper {
     width: 400;
-display: list-item;
+    display: block;
 }
 </style>
 <div class="book" id="book1">
@@ -187,6 +203,8 @@ function add_page(){
 			$('#subpage_'+new_id_n).append(html);
 		var html = '<div class="bottom_div"><div class="academy_name">테스트</div><div class="page_number">'+new_id_n+'</div></div>';		
 			$('#subpage_'+new_id_n).append(html);
+
+        
 	}
 
 </script>
