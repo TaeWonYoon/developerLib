@@ -105,9 +105,9 @@ $(document).on('click', '#add_one', function(event) {		// 정답을 클릭하면
 
     contentAIdx.each(function(idx){//각각의 컨텐트A 반복문
         total += $(".newspaper:eq("+ _i +") .contentA").eq(idx).innerHeight(); //페이지 영역을 벗어나는지 체크
-        if(total > 1930) { //프린트 높이 영역이 두개 합쳤을때  1930
+        if(total > 2001) { //프린트 높이 영역이 두개 합쳤을때  1930
             var fpageheight = 0; //텍스트 하나당 영역
-            var div = 1930;  
+            var div = 2001;  
             var divVal = 0; //div - fpageheight 담을 값
 
             fpageheight = $(".newspaper:eq("+ _i +") .contentA").eq(idx).innerHeight(); //총 높이 값
