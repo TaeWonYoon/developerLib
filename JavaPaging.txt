@@ -1,0 +1,48 @@
+//컨트롤러
+int currentPage = Integer.parseInt((String)paramMap.get("rcurrentPage"));	// 현재 페이지 번호
+int pageSize = Integer.parseInt((String)paramMap.get("rpageSize"));	// 페이지 사이즈
+int pageIndex = (currentPage-1)*pageSize;	// 페이지 시작 row 번호
+
+디비 카운트  HashMap
+int totalcount = purchaseService.countListPurchaseReturn(paramMap);
+resultMap.put("totalCntListDeliOrder", totalcount);
+resultMap.put("pageSize",pageSize);
+resultMap.put("currentPageListDeliOrder", currentPage);
+
+
+
+front
+
+currentPage : currpage      
+pageSize : pagesize
+
+function callAjax(url, method, dataType, async, param, callback) {
+   //console.log('>>>>>>param일떄',param);
+   
+   //method는 post 이다. async는 true/false이다.
+   if (method == null || method == "") method = "post";
+   
+
+
+
+//	for (var pair of formData.entries()) {
+//		  console.log(pair[0]+ ', ' + pair[1]);
+//		} 
+	function commonAjax(formData) {
+  	var formData = new FormData($('#formData')[0]);
+	//var formData = $("#formData").serialize();
+    $.ajax({
+          type: "POST", 
+        enctype: 'multipart/form-data',   //form data 설정
+          url: '/ajaxTest',
+        dataType: "json",
+        data : formData,
+        contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
+          processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
+        success: function (result) {
+            //location.reload();
+        }
+    })
+}
+
+})
