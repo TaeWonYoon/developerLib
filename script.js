@@ -40,6 +40,7 @@ function callAjax(formData, url, callback, sync) {
 		url: url,
 		    dataType: "json",
 		    data : formData,
+		    async : async,
 		    contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
 		    processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
 		    success: function (result) {
