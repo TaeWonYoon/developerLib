@@ -31,11 +31,13 @@ function dateFormatter(date) { //타임스템프 날짜변환 처리
 	
 	return result;
 }
-function callAjax(formData, callback) {
+
+//Ajax
+function callAjax(formData, url, callback, sync) {
 	$.ajax({
 		type: "POST", 
 		    enctype: 'multipart/form-data',   //form data 설정
-		url: '/ajaxTest',
+		url: url,
 		    dataType: "json",
 		    data : formData,
 		    contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
