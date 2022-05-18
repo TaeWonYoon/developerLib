@@ -1,4 +1,6 @@
 
 alert("호출좀");
 
-$("h1").html("호출좀");
+function test() {
+ alert("??"); 
+}
