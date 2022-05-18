@@ -31,3 +31,19 @@ function dateFormatter(date) { //타임스템프 날짜변환 처리
 	
 	return result;
 }
+function callAjax(formData, callback) {
+	$.ajax({
+		type: "POST", 
+		    enctype: 'multipart/form-data',   //form data 설정
+		url: '/ajaxTest',
+		    dataType: "json",
+		    data : formData,
+		    contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
+		    processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
+		    success: function (result) {
+			callback(result)
+		    }, error: function(x) {
+			alert(x)    
+		    }
+	})
+}
