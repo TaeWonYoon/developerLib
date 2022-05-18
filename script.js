@@ -33,7 +33,7 @@ function dateFormatter(date) { //타임스템프 날짜변환 처리
 }
 
 //Ajax
-function callAjax(formData, url, callback, sync) {
+function callAjax(formData, url, callback, async) {
 	$.ajax({
 		type: "POST", 
 		    enctype: 'multipart/form-data',   //form data 설정
