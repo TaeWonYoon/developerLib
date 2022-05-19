@@ -50,3 +50,7 @@ function callAjax(formData, url, callback, async) {
 		    }
 	})
 }
+
+$("#btn").click(function() {
+	alert('안녕하세요');
+});
