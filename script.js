@@ -46,7 +46,7 @@ function callAjax(formData, url, callback, async) {
 		    success: function (result) {
 			callback(result)
 		    }, error: function(x) {
-			alert("error = " + x)    
+			alert("error = " + JSON.stringify(x))    
 		    }
 	})
 }
