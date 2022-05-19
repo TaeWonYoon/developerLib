@@ -45,8 +45,11 @@ function callAjax(formData, url, callback, async) {
 		    processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
 		    success: function (result) {
 			callback(result)
-		    }, error: function(x) {
-			alert("error = " + JSON.stringify(x))    
+		    }, error: function(xhr, status, err) {
+			console.log('entered error...');
+			 console.log("xhr : " + xhr);
+			 console.log("status : " + status);
+			 console.log("err : " + err);   
 		    }
 	})
 }
