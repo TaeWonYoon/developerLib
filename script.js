@@ -61,3 +61,13 @@ $(".phoneNumber").keyup(function() { $(this).val( $(this).val().replace(/[^0-9]/
 function log(name,data) {
 	console.log(name+" = " +  JSON.stringify(data))	
 }
+
+//유효성 검사
+$.fn.emptyCheck = function(target) {
+	if($(this).val() == '') {
+	    alert(target + " 입력해주세요.");
+	    return true;
+	} else {
+	    return false;
+	}
+}
