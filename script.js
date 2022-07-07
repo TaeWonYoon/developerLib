@@ -1,3 +1,22 @@
+function nowDate(type) { //원하는 날짜 출력
+	var today = new Date();
+
+	var year = today.getFullYear();
+	var month = ('0' + (today.getMonth() + 1)).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
+
+	var returnData = "";
+	if(type == "y") {
+		returnData = year + '-' + month  + '-' + day;
+	} else if(type == "m") {
+		returnData = year + '-' + month;
+	} else if(type == "d") {
+		returnData = year + '-' + month  + '-' + day;
+	}
+
+
+	return returnData;
+}
 
 function numFormmat(num) { //넘버 포맷 함수
 	return new Intl.NumberFormat().format(num);
