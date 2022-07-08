@@ -3,7 +3,7 @@ function nowDate(type,minus) { //원하는 날짜 출력
 
 	var year = today.getFullYear();
 	var month = ('0' + (today.getMonth() + 1)).slice(-2);
-	var day = minus == 'Y' ? (('0' + today.getDate()).slice(-2)-7) : ('0' + today.getDate()).slice(-2);
+	var day = minus == 'Y' ? (('0' + today.getDate()).slice(-2)-30) : ('0' + today.getDate()).slice(-2);
 	
 	var returnData = "";
 	if(type == "y") {
