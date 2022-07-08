@@ -7,7 +7,7 @@ function nowDate(type) { //원하는 날짜 출력
 	
 	var returnData = "";
 	if(type == "y") {
-		returnData = year + '-' + month  + '-' + day;
+		returnData = year;
 	} else if(type == "m") {
 		returnData = year + '-' + month;
 	} else if(type == "d") {
