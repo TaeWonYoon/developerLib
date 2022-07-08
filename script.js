@@ -16,9 +16,9 @@ function nowDate(type) { //원하는 날짜 출력
 
 	return returnData;
 }
-function backDate() {
+function backDate(minus) {
 	var now = new Date();	// 현재 날짜 및 시간
-	var days = new Date(now.setDate(now.getDate() - 30));	// 30일
+	var days = new Date(now.setDate(now.getDate() - minus));
 	var year = days .getFullYear();
 	var month = ('0' + (days .getMonth() + 1)).slice(-2);
 	var day = ('0' + days .getDate()).slice(-2);
