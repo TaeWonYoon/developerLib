@@ -1,9 +1,9 @@
-function nowDate(type,minus) { //원하는 날짜 출력
+function nowDate(type) { //원하는 날짜 출력
 	var today = new Date();
 
 	var year = today.getFullYear();
 	var month = ('0' + (today.getMonth() + 1)).slice(-2);
-	var day = minus == 'Y' ? (('0' + today.getDate()).slice(-2)-30) : ('0' + today.getDate()).slice(-2);
+	var day = ('0' + today.getDate()).slice(-2);
 	
 	var returnData = "";
 	if(type == "y") {
@@ -16,7 +16,16 @@ function nowDate(type,minus) { //원하는 날짜 출력
 
 	return returnData;
 }
-
+function backDate() {
+	var now = new Date();	// 현재 날짜 및 시간
+	var days = new Date(now.setDate(now.getDate() - 30));	// 30일
+	var year = days .getFullYear();
+	var month = ('0' + (days .getMonth() + 1)).slice(-2);
+	var day = ('0' + days .getDate()).slice(-2);
+	returnData = year + '-' + month  + '-' + day;	
+	
+	return returnData;
+}
 function numFormmat(num) { //넘버 포맷 함수
 	return new Intl.NumberFormat().format(num);
 }
