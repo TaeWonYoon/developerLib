@@ -64,37 +64,37 @@ function callAjax(param, url, callback, async, type) {
 	if(type == "f") {
 		$.ajax({
 			type: "POST", 
-			    enctype: 'multipart/form-data',   //form data 설정
+			enctype: 'multipart/form-data',   //form data 설정
 			url: url,
-			    dataType: "json",
-			    data : param,
-			    async : async,
-			    contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
-			    processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
-			    success: function (result) {
+			dataType: "json",
+			data : param,
+			async : async,
+			contentType : false, //프로세스 데이터 설정 : false 값을 해야 form data로 인식합니다
+			processData : false,   //헤더의 Content-Type을 설정 : false 값을 해야 form data로 인식합니다
+			success: function (result) {
 				callback(result)
-			    }, error: function(xhr, status, err) {
+			}, error: function(xhr, status, err) {
 				console.log('entered error...');
-				 console.log("xhr : " + xhr);
-				 console.log("status : " + status);
-				 console.log("err : " + err);   
-			    }
+				console.log("xhr : " + JSON.stringify(xhr));
+				console.log("status : " + JSON.stringify(status));
+				console.log("err : " + err);   
+			}
 		})
 	} else if(type == "p") {
 		$.ajax({
 			type: "POST", 
 			url: url,
-			    dataType: "json",
-			    data : param,
-			    async : async,
-			    success: function (result) {
+			dataType: "json",
+			data : param,
+			async : async,
+			success: function (result) {
 				callback(result)
-			    }, error: function(xhr, status, err) {
+			}, error: function(xhr, status, err) {
 				console.log('entered error...');
-				 console.log("xhr : " + xhr);
-				 console.log("status : " + status);
-				 console.log("err : " + err);   
-			    }
+				console.log("xhr : " + JSON.stringify(xhr));
+				console.log("status : " + JSON.stringify(status));
+				console.log("err : " + err);   
+			}
 		})
 	}
 }
