@@ -116,3 +116,28 @@ $.fn.emptyCheck = function(target) {
 	    return false;
 	}
 }
+
+function setCookie(key, val) { //쿠키 생성
+    var ck = key + "=" + val;
+
+    document.cookie = ck;
+  } 
+
+  function getCookie(cookieName){ //쿠키 조회
+    var cookieValue=null;
+    if(document.cookie){
+        var array=document.cookie.split((escape(cookieName)+'='));
+        if(array.length >= 2){
+            var arraySub=array[1].split(';');
+            cookieValue=unescape(arraySub[0]);
+        }
+    }
+    return cookieValue;
+}
+
+function deleteCookie(cookieName){ //쿠키 삭제 
+    var temp=getCookie(cookieName);
+    if(temp){
+      document.cookie = cookieName+'=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'; //등록시간보다 낮으면 삭제
+    }
+}
